@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gesture_pattern_detector/detector.dart';
+import 'package:gesture_pattern_detector/gesture_pattern_detector.dart';
 
 void main() {
   runApp(const MainApp());
@@ -17,9 +17,9 @@ class MainApp extends StatelessWidget {
             onPattern: () {
               debugPrint('success');
             },
-            pattern: '><.-',
+            pattern: GesturePattern.parse('><.-'),
             child: const Text(
-              'Hello World!',
+              'Interact with me!',
               style: TextStyle(fontSize: 24),
             ),
           ),

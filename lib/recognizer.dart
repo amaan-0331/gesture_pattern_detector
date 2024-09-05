@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:gesture_pattern_detector/pattern.dart';
 
 /// Core class to recognize a gesture pattern based on a Morse code-like string
 class GesturePatternRecognizer {
-  final String pattern;
+  final GesturePattern pattern;
   final Duration timeout;
   final VoidCallback onPatternMatched;
   late List<GestureType> _gestureSequence;
@@ -18,21 +19,7 @@ class GesturePatternRecognizer {
     required this.timeout,
     required this.onPatternMatched,
   }) {
-    // Parse the pattern string into a GestureType list
-    _gestureSequence = pattern.split('').map((char) {
-      switch (char) {
-        case '.':
-          return GestureType.tap;
-        case '-':
-          return GestureType.long;
-        case '>':
-          return GestureType.rightSwipe;
-        case '<':
-          return GestureType.leftSwipe;
-        default:
-          throw ArgumentError('Invalid pattern character: $char');
-      }
-    }).toList();
+    _gestureSequence = pattern.pattern;
   }
 
   void resetPattern() {
@@ -68,18 +55,4 @@ class GesturePatternRecognizer {
       resetPattern();
     }
   }
-}
-
-enum GestureType {
-  tap,
-  long,
-  leftSwipe,
-  rightSwipe;
-
-  String get string => switch (this) {
-        tap => '.',
-        long => '-',
-        rightSwipe => '>',
-        leftSwipe => '<',
-      };
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_pattern_detector/pattern.dart';
 import 'package:gesture_pattern_detector/recognizer.dart';
 
 /// A widget that detects a Morse code-like gesture pattern
 class GesturePatternDetector extends StatefulWidget {
-  /// The pattern string, where '.' = tap, '-' = long press
-  final String pattern;
+  /// The pattern, where '.' = tap, '-' = long press, '>' & '<' = swipe
+  final GesturePattern pattern;
 
   /// Callback when the pattern is successfully matched
   final VoidCallback onPattern;
@@ -12,7 +13,7 @@ class GesturePatternDetector extends StatefulWidget {
   /// The widget to wrap with the detector
   final Widget child;
 
-  /// Time in seconds to complete the pattern before it resets
+  /// Time in Duration to complete the pattern before it resets
   final Duration timeout;
 
   const GesturePatternDetector({

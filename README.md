@@ -40,9 +40,11 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: Text('Gesture Pattern Detector')),
         body: GesturePatternDetector(
-          pattern: '.-..-...', // Define your pattern here
+          // Define your pattern here
+          // pattern: GesturePattern([GestureType.tap,GestureType.long,GestureType.tap]),
+          pattern: GesturePattern.parse('><.-'),
           onPattern: () {
-            print('Pattern matched! Dev tools opened!');
+            print('Pattern matched!');
             // Action to run when pattern is matched
           },
           child: Container(
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
 
 ## Parameters
 
-- `pattern` (String): The gesture pattern to match, using the syntax described above.
+- `pattern` (GesturePattern): The gesture pattern to match, using the syntax described above.
 - `onPattern` (VoidCallback): The callback function to execute when the pattern is successfully matched.
 - `child` (Widget): The widget to wrap with the gesture detector.
 - `timeout` (Duration, optional): Time allowed to complete the pattern before it resets (default is 5 seconds).
@@ -78,6 +80,11 @@ class MyApp extends StatelessWidget {
 
 ```dart
 class GesturePatternDetector extends StatefulWidget {
+  final GesturePattern pattern;
+  final VoidCallback onPattern;
+  final Widget child;
+  final Duration timeout;
+
   const GesturePatternDetector({
     required this.pattern,
     required this.onPattern,
@@ -85,11 +92,6 @@ class GesturePatternDetector extends StatefulWidget {
     this.timeout = const Duration(seconds: 5),
     super.key,
   });
-
-  final String pattern;
-  final VoidCallback onPattern;
-  final Widget child;
-  final Duration timeout;
 
   @override
   State<GesturePatternDetector> createState() => _GesturePatternDetectorState();
