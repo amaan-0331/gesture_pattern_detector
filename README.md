@@ -1,39 +1,105 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Gesture Pattern Detector
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter plugin that allows you to detect custom gesture patterns using a Morse code-like string. The plugin supports taps, long presses, and swipes to create complex gesture sequences.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Recognizes patterns based on taps, long presses, and swipes.
+- Customizable timeout for completing the gesture pattern.
+- Callback function triggered upon successful pattern detection.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the dependency to your `pubspec.yaml` file:
+
+```yaml
+dependencies:
+  gesture_pattern_detector: any
+```
+
+Run `flutter pub get` to install the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Wrap your widget with `GesturePatternDetector` and specify the pattern and callback.
+
+### Example
 
 ```dart
-const like = 'sample';
+import 'package:flutter/material.dart';
+import 'package:gesture_pattern_detector/gesture_pattern_detector.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Gesture Pattern Detector')),
+        body: GesturePatternDetector(
+          pattern: '.-..-...', // Define your pattern here
+          onPattern: () {
+            print('Pattern matched! Dev tools opened!');
+            // Action to run when pattern is matched
+          },
+          child: Container(
+            color: Colors.blue,
+            height: 200,
+            width: 400,
+            child: Center(child: Text('Tap or Swipe')),
+          ),
+        ),
+      ),
+    );
+  }
+}
 ```
 
-## Additional information
+## Pattern Syntax
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- `.`: Tap
+- `-`: Long press
+- `>`: Swipe right
+- `<`: Swipe left
+
+## Parameters
+
+- `pattern` (String): The gesture pattern to match, using the syntax described above.
+- `onPattern` (VoidCallback): The callback function to execute when the pattern is successfully matched.
+- `child` (Widget): The widget to wrap with the gesture detector.
+- `timeout` (Duration, optional): Time allowed to complete the pattern before it resets (default is 5 seconds).
+
+## API
+
+### GesturePatternDetector
+
+```dart
+class GesturePatternDetector extends StatefulWidget {
+  const GesturePatternDetector({
+    required this.pattern,
+    required this.onPattern,
+    required this.child,
+    this.timeout = const Duration(seconds: 5),
+    super.key,
+  });
+
+  final String pattern;
+  final VoidCallback onPattern;
+  final Widget child;
+  final Duration timeout;
+
+  @override
+  State<GesturePatternDetector> createState() => _GesturePatternDetectorState();
+}
+```
+
+## Contributing
+
+Contributions are welcome! Please follow the standard Flutter contribution guidelines.
+
+## License
+
+This package is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
