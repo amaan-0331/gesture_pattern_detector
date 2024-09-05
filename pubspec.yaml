@@ -1,7 +1,7 @@
 name: gesture_pattern_detector
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+repository: https://github.com/amaan-0331/gesture_pattern_detector
 
 environment:
   sdk: ">=3.4.3 <4.0.0"
