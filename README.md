@@ -2,6 +2,8 @@
 
 A Flutter plugin that allows you to detect custom gesture patterns using a Morse code-like string. The plugin supports taps, long presses, and swipes to create complex gesture sequences.
 
+[![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
+
 ## Features
 
 - Recognizes patterns based on taps, long presses, and swipes.
