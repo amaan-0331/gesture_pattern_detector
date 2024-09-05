@@ -60,6 +60,12 @@ class _GesturePatternDetectorState extends State<GesturePatternDetector> {
     );
   }
 
+  @override
+  void dispose() {
+    _recognizer.resetPattern();
+    super.dispose();
+  }
+
   /// Handles a tap gesture by processing it with the recognizer.
   void _handleTap() {
     _recognizer.processGesture(GestureType.tap);
