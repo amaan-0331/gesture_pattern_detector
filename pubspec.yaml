@@ -1,5 +1,5 @@
 name: gesture_pattern_detector
-description: "A new Flutter package project."
+description: "gesture_pattern_detector is a Flutter package that allows developers to detect custom gesture patterns, similar to Morse code, in their apps. Define complex gestures by combining taps, long presses, and swipes, and trigger actions when the correct sequence is performed. It's a versatile tool for implementing hidden features or secret gestures, enhancing user interactions in innovative ways."
 version: 0.0.1
 repository: https://github.com/amaan-0331/gesture_pattern_detector
 
