@@ -1,6 +1,5 @@
 import 'dart:async';
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gesture_pattern_detector/pattern.dart';
 
 /// Core class to recognize a gesture pattern based on a Morse code-like string.
@@ -41,8 +40,8 @@ class GesturePatternRecognizer {
   /// Timer used to enforce the pattern completion timeout.
   Timer? _timer;
 
-  /// The start time of the gesture pattern recognition.
-  late DateTime _startTime;
+  /// The stopwatch used to measure the elapsed time for the pattern.
+  final Stopwatch _stopwatch = Stopwatch();
 
   /// Resets the pattern matching process and cancels the current timer.
   ///
@@ -51,6 +50,7 @@ class GesturePatternRecognizer {
   void resetPattern() {
     _currentIndex = 0;
     _timer?.cancel();
+    _stopwatch.reset();
   }
 
   /// Checks if the current time is within the allowed time frame for the pattern.
@@ -58,15 +58,15 @@ class GesturePatternRecognizer {
   /// Returns `true` if the time elapsed since the start of the pattern is within
   /// the specified [timeout], otherwise returns `false`.
   bool _isWithinTimeFrame() {
-    return DateTime.now().difference(_startTime).inSeconds <= timeout.inSeconds;
+    return _stopwatch.elapsed <= timeout;
   }
 
-  /// Starts the timer to enforce the pattern completion timeout.
+  /// Starts the stopwatch and timer to enforce the pattern completion timeout.
   ///
   /// This method records the start time and initializes the timer to call
   /// [resetPattern] when the timeout period elapses.
   void _startTimer() {
-    _startTime = DateTime.now();
+    _stopwatch.start();
     _timer = Timer(timeout, resetPattern);
   }
 

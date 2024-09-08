@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:gesture_pattern_detector/pattern.dart';
-import 'package:gesture_pattern_detector/recognizer.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gesture_pattern_detector/gesture_pattern_detector.dart';
 
 /// A widget that detects a Morse code-like gesture pattern.
 ///
@@ -53,11 +52,35 @@ class _GesturePatternDetectorState extends State<GesturePatternDetector> {
   @override
   void initState() {
     super.initState();
+    _initializeRecognizer();
+  }
+
+  void _initializeRecognizer() {
     _recognizer = GesturePatternRecognizer(
       pattern: widget.pattern,
       timeout: widget.timeout,
       onPatternMatched: widget.onPattern,
     );
+  }
+
+  @override
+  void didUpdateWidget(covariant GesturePatternDetector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.pattern != oldWidget.pattern) {
+      _updateRecognizerPattern();
+    }
+  }
+
+  void _updateRecognizerPattern() {
+    _recognizer.resetPattern();
+
+    if (widget.pattern.pattern.isNotEmpty) {
+      _recognizer = GesturePatternRecognizer(
+        pattern: widget.pattern,
+        timeout: widget.timeout,
+        onPatternMatched: widget.onPattern,
+      );
+    }
   }
 
   @override
@@ -68,22 +91,30 @@ class _GesturePatternDetectorState extends State<GesturePatternDetector> {
 
   /// Handles a tap gesture by processing it with the recognizer.
   void _handleTap() {
-    _recognizer.processGesture(GestureType.tap);
+    if (widget.pattern.pattern.isNotEmpty) {
+      _recognizer.processGesture(GestureType.tap);
+    }
   }
 
   /// Handles a long press gesture by processing it with the recognizer.
   void _handleLongPress() {
-    _recognizer.processGesture(GestureType.long);
+    if (widget.pattern.pattern.isNotEmpty) {
+      _recognizer.processGesture(GestureType.long);
+    }
   }
 
   /// Handles a swipe left gesture by processing it with the recognizer.
   void _handleSwipeLeft() {
-    _recognizer.processGesture(GestureType.leftSwipe);
+    if (widget.pattern.pattern.isNotEmpty) {
+      _recognizer.processGesture(GestureType.leftSwipe);
+    }
   }
 
   /// Handles a swipe right gesture by processing it with the recognizer.
   void _handleSwipeRight() {
-    _recognizer.processGesture(GestureType.rightSwipe);
+    if (widget.pattern.pattern.isNotEmpty) {
+      _recognizer.processGesture(GestureType.rightSwipe);
+    }
   }
 
   @override
