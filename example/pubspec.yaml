@@ -9,13 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_confetti: ^0.3.0
   gesture_pattern_detector:
     path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  very_good_analysis: ^6.0.0
 
 flutter:
   uses-material-design: true
