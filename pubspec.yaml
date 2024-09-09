@@ -1,6 +1,6 @@
 name: gesture_pattern_detector
 description: "A Flutter package that detects custom gesture patterns (taps, swipes, long presses) to trigger actions, perfect for hidden features, dev tools, and unique interactions."
-version: 0.0.3
+version: 0.0.4
 repository: https://github.com/amaan-0331/gesture_pattern_detector
 
 environment:

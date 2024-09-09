@@ -1,3 +1,7 @@
+## 0.0.4
+
+- Add behavior, supportedDevices, excludeFromSemantics, trackpadScrollCausesScale, dragStartBehavior, trackpadScrollToScaleFactor
+
 ## 0.0.3
 
 - Reinitialize detector if pattern changes
@@ -6,7 +10,7 @@
 
 ## 0.0.2
 
-- update License, Description
+- Update License, Description
 
 ## 0.0.1
 
