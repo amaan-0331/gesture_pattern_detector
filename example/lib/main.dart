@@ -30,7 +30,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _parsedPattern = GesturePattern.parse('><.-');
+  var _parsedPattern = GesturePattern.parse('.----.');
 
   @override
   Widget build(BuildContext context) {
