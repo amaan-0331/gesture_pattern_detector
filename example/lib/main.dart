@@ -30,7 +30,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _parsedPattern = GesturePattern.parse('.-.');
+  var _parsedPattern = GesturePattern.parse('><.-');
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: GesturePatternDetector(
                   onPattern: _success,
                   pattern: _parsedPattern,
+                  behavior: HitTestBehavior.translucent,
                   child: const Text(
                     'Interact with me!',
                     style: TextStyle(fontSize: 24),
