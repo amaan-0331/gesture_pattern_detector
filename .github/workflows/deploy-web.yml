@@ -22,7 +22,7 @@ jobs:
         run: flutter pub get
 
       - name: Build for web
-        run: flutter build web --release --base-href=/gesture_pattern_detector/
+        run: cd example && flutter build web --release --base-href=/gesture_pattern_detector/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
